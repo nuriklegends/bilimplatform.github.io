@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bilim Platform — Білім ал. Үйрен. Дамы.</title>
+<style>
+:root{--navy:#17365d;--blue:#2563eb;--sky:#eaf2ff;--ink:#172033;--muted:#64748b;--bg:#f5f7fb;--line:#e5eaf2;--white:#fff;--green:#16845b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 "Segoe UI",Arial,sans-serif}
+button,input{font:inherit}button{cursor:pointer;border:0;border-radius:10px;padding:10px 15px;background:var(--blue);color:white;font-weight:600}
+button.secondary{background:#edf2f8;color:var(--navy)}button.ghost{background:transparent;color:var(--navy);border:1px solid var(--line)}
+header{background:var(--navy);color:white;padding:14px 5%;display:flex;align-items:center;justify-content:space-between;gap:16px;position:sticky;top:0;z-index:5;box-shadow:0 4px 18px #102b4a22}
+.brand{display:flex;align-items:center;gap:11px;font-size:21px;font-weight:800}.logo{width:38px;height:38px;border-radius:12px;background:#fff;color:var(--navy);display:grid;place-items:center;font-weight:900}
+nav{display:flex;gap:7px;flex-wrap:wrap}nav button{background:transparent;color:#eaf2ff;padding:9px 12px}nav button.active,nav button:hover{background:#ffffff20}
+main{max-width:1160px;margin:28px auto;padding:0 20px}.hero{background:linear-gradient(120deg,#17365d,#2563a8);border-radius:22px;padding:34px;color:white;display:grid;grid-template-columns:1.4fr .8fr;gap:20px;align-items:center;overflow:hidden}
+.hero h1{font-size:clamp(28px,4vw,42px);line-height:1.15;margin:0 0 12px}.hero p{color:#e0ecff;max-width:600px}.hero-art{min-height:175px;border-radius:18px;background:linear-gradient(135deg,#ffffff20,#ffffff08);display:grid;place-items:center;font-size:78px}
+.pills{display:flex;gap:9px;flex-wrap:wrap;margin-top:20px}.pill{background:#ffffff20;padding:7px 12px;border-radius:30px;font-size:13px}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:12px;margin:30px 0 15px}.section-head h2{margin:0;font-size:24px}.muted{color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{background:white;border:1px solid var(--line);border-radius:17px;padding:18px;box-shadow:0 5px 18px #14213d08}
+.course-top{height:110px;border-radius:13px;display:grid;place-items:center;font-size:45px;margin-bottom:14px;background:var(--sky)}
+.tag{font-size:12px;color:#2456a6;background:#eaf2ff;padding:5px 9px;border-radius:20px;display:inline-block}
+.card h3{margin:10px 0 5px;font-size:18px}.card p{color:var(--muted);font-size:14px;min-height:42px}.meta{display:flex;justify-content:space-between;color:var(--muted);font-size:12px;margin:12px 0}
+.card button{width:100%}.video-feature{cursor:pointer}.video-feature:hover{border-color:#9bbcf7;box-shadow:0 8px 24px #2563eb18}.youtube-link{display:inline-block;background:#fff0f0;color:#c62828;text-decoration:none;padding:10px 14px;border-radius:10px;font-weight:700}.youtube-link:hover{background:#ffe0e0}.two-col{display:grid;grid-template-columns:1.2fr .8fr;gap:16px}.panel{background:white;border:1px solid var(--line);border-radius:17px;padding:20px;margin-bottom:15px}
+.panel h2,.panel h3{margin-top:0}.video-wrap{background:#0b1220;border-radius:14px;overflow:hidden;aspect-ratio:16/9;margin:12px 0}.video-wrap iframe{width:100%;height:100%;border:0}.video-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;margin:12px 0}.module{padding:13px 0;border-bottom:1px solid var(--line)}.module:last-child{border:0}.module strong{display:block}.module small{color:var(--muted)}
+.statrow{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.stat{background:#f4f7fc;border-radius:13px;padding:14px}.stat b{font-size:23px;display:block;color:var(--navy)}
+textarea{font:inherit;resize:vertical}label{display:block;font-weight:600;margin:12px 0 6px}input{width:100%;padding:11px;border:1px solid #d9e1ec;border-radius:10px;background:white}
+.option{display:block;padding:10px;border:1px solid var(--line);border-radius:10px;margin:8px 0;font-weight:400}.option input{width:auto;margin-right:8px}
+.notice{background:#fff8e8;border:1px solid #f5dfaa;color:#76551a;padding:12px 14px;border-radius:12px;font-size:13px}
+.success{background:#eaf8f1;color:#126445;border:1px solid #c9ead9;padding:12px;border-radius:10px;margin-top:12px}
+footer{text-align:center;color:var(--muted);padding:35px 15px;font-size:13px}
+.hidden{display:none!important}.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+@media(max-width:800px){.grid{grid-template-columns:repeat(2,1fr)}.hero{grid-template-columns:1fr}.hero-art{min-height:100px}.two-col{grid-template-columns:1fr}}
+@media(max-width:560px){header{align-items:flex-start;flex-direction:column}.grid{grid-template-columns:1fr}.section-head{align-items:flex-start;flex-direction:column}.hero{padding:24px}}
+</style>
+</head>
+<body>
+<header>
+ <div class="brand"><div class="logo">B</div>Bilim Platform</div>
+ <nav>
+  <button class="active" data-page="home">Басты бет</button>
+  <button data-page="courses">Курстар</button>
+  <button data-page="tests">Тесттер</button>
+  <button data-page="practice">Практика</button>
+  <button data-page="profile">Менің кабинетім</button>
+ </nav>
+</header>
+<main>
+<section id="home" class="page">
+ <div class="hero">
+  <div><span class="pill">Қазақ тіліндегі онлайн білім беру</span><h1>Білім ал. Үйрен. Дамы.</h1>
+   <p>Өзіңе қажетті курсты таңда, жаңа дағдыларды меңгер және біліміңді практикалық тапсырмалар арқылы бекіт.</p>
+   <div class="row"><button onclick="showPage('courses')">Курстарды көру</button><button class="secondary" onclick="showPage('practice')">Жаттығуды бастау</button></div>
+   <div class="pills"><span class="pill">📚 Онлайн курстар</span><span class="pill">🧩 Практика</span><span class="pill">📝 Тесттер</span><span class="pill">🏅 Нәтиже</span></div>
+  </div><div class="hero-art">🎓💻</div>
+ </div>
+ <div class="section-head"><div><h2>Танымал курстар</h2><div class="muted">Оқуды бүгіннен баста</div></div><button class="ghost" onclick="showPage('courses')">Барлық курстар →</button></div>
+ <div class="grid" id="homeCourses"></div>
+ <div class="section-head"><div><h2>Платформа мүмкіндіктері</h2><div class="muted">Оқу процесіне қажетті құралдар</div></div></div>
+ <div class="grid">
+  <div class="card video-feature" role="button" tabindex="0" onclick="showPage('courses')" onkeydown="if(event.key==='Enter'||event.key===' '){showPage('courses')}"><div class="course-top">🎥</div><h3>Видео сабақтар</h3><p>Курсты таңдап, ішіндегі бейнесабақты осы жерден көр. Көру үшін интернет қажет.</p><button type="button" onclick="event.stopPropagation();showPage('courses')">Видео сабақтарды ашу</button></div>
+  <div class="card video-feature" role="button" tabindex="0" onclick="showPage('tests')"><div class="course-top">📝</div><h3>Тест және бағалау</h3><p>Біліміңді тексеріп, нәтижеңді бірден көр.</p><button onclick="event.stopPropagation();showPage('tests')">Тесттерді ашу</button></div>
+  <div class="card video-feature" role="button" tabindex="0" onclick="showPage('practice')"><div class="course-top">💻</div><h3>Практикалық жұмыс</h3><p>Бағдарламалау есептері мен тапсырмаларды орында.</p><button onclick="event.stopPropagation();showPage('practice')">Практиканы ашу</button></div>
+ </div>
+</section>
+<section id="courses" class="page hidden">
+ <div class="section-head"><div><h2>Барлық курстар</h2><div class="muted">Бағытыңды таңдап, оқуды баста</div></div></div>
+ <div class="grid" id="allCourses"></div>
+</section>
+<section id="courseDetail" class="page hidden">
+ <button class="ghost" onclick="showPage('courses')">← Курстарға қайту</button>
+ <div id="courseContent" style="margin-top:16px"></div>
+</section>
+<section id="tests" class="page hidden">
+ <div class="section-head"><div><h2>Тест тапсырмалары</h2><div class="muted">Курсты таңдап, біліміңді тексер. Әр дұрыс жауапқа 10 ұпай.</div></div></div>
+ <div class="grid" id="testCourses"></div>
+</section>
+<section id="practice" class="page hidden">
+ <div class="section-head"><div><h2>Практикалық жаттығулар</h2><div class="muted">Біліміңді тапсырмалар арқылы бекіт</div></div></div>
+ <div class="grid">
+  <div class="card"><div class="course-top">💻</div><span class="tag">C++ · Бастапқы</span><h3>Екі санның қосындысы</h3><p>Екі бүтін санды қосып, нәтижесін экранға шығару алгоритмін түсін.</p><button onclick="openExercise()">Тапсырманы ашу</button></div>
+  <div class="card"><div class="course-top">🐍</div><span class="tag">Python · Бастапқы</span><h3>Жұп немесе тақ сан</h3><p>Берілген санның жұп не тақ екенін анықтау.</p><button onclick="openPythonExercise()">Тапсырманы ашу</button></div>
+  <div class="card"><div class="course-top">🗄️</div><span class="tag">SQL · Практика 1</span><h3>SELECT және WHERE</h3><p>students кестесінен шартқа сай студенттерді таңдау.</p><button onclick="openSqlTask(0)">Тапсырманы ашу</button></div>
+  <div class="card"><div class="course-top">🧮</div><span class="tag">SQL · Практика 2</span><h3>GROUP BY және COUNT</h3><p>Топтар бойынша студенттер санын есептеу.</p><button onclick="openSqlTask(1)">Тапсырманы ашу</button></div>
+  <div class="card"><div class="course-top">🔗</div><span class="tag">SQL · Практика 3</span><h3>JOIN арқылы байланыстыру</h3><p>students және groups кестелерінен ортақ ақпарат алу.</p><button onclick="openSqlTask(2)">Тапсырманы ашу</button></div>
+  <div class="card"><div class="course-top">📊</div><span class="tag">SQL · Практика 4</span><h3>Қорытынды сұраныс</h3><p>JOIN, GROUP BY және HAVING командаларын бірге қолдану.</p><button onclick="openSqlTask(3)">Тапсырманы ашу</button></div>
+ </div>
+ <div id="exerciseArea" class="panel hidden" style="margin-top:18px"></div>
+</section>
+<section id="profile" class="page hidden">
+ <div class="section-head"><div><h2>Менің кабинетім</h2><div class="muted">Оқу барысың мен жетістіктерің</div></div></div>
+ <div class="panel"><div class="row"><div style="font-size:42px">👩‍🎓</div><div><h3 style="margin:0">Студент кабинеті</h3><div class="muted">Демо пайдаланушы</div></div></div>
+ <div class="statrow" style="margin-top:18px"><div class="stat"><b id="doneCount">0</b><span class="muted">Орындалған тапсырма</span></div><div class="stat"><b id="scoreCount">0</b><span class="muted">Жиналған ұпай</span></div><div class="stat"><b>4</b><span class="muted">Қолжетімді курс</span></div></div></div>
+ <div class="panel"><h3>Оқу туралы</h3><p class="muted">Курсқа кіріп, сабақтарды оқы және тесттерді орында. Нәтижелер осы демо бетте көрсетіледі.</p></div>
+ <div class="notice">Бұл — университетте көрсетуге арналған жергілікті демонстрациялық нұсқа. Нақты аккаунттар, серверлік деректер базасы және Moodle-мен синхрондау әлі қосылмаған.</div>
+</section>
+<section id="quiz" class="page hidden">
+ <button class="ghost" onclick="showPage('courses')">← Курстарға қайту</button>
+ <div class="panel" style="margin-top:16px"><h2 id="quizTitle">Білімді тексеру</h2><div id="quizQuestions"></div><button onclick="checkQuiz()">Тестті аяқтау</button><div id="quizResult"></div></div>
+</section>
+</main>
+<footer>© 2026 Bilim Platform · SQL оқу бағдарламасы Андрей Созыкиннің ашық «Основы SQL» курсының тақырыптарына сүйеніп әзірленді.</footer>
+<script>
+const courses=[
+ {id:'cpp',title:'C++ бағдарламалау негіздері',cat:'Бағдарламалау',icon:'💻',level:'Бастапқы деңгей',lessons:6,desc:'C++ тілінің негізгі құрылымдарын үйреніп, алғашқы бағдарламаларыңды жаз.',videoTitle:'C++ тілін нөлден бастап толық үйрену',videoSrc:'https://www.youtube-nocookie.com/embed/P5Lah3YlkpQ',modules:['C++ тіліне кіріспе','Айнымалылар және деректер типтері','Шартты операторлар','Циклдер','Массивтер','Қорытынды жоба']},
+ {id:'python',title:'Python бағдарламалау',cat:'Бағдарламалау',icon:'🐍',level:'Бастапқы деңгей',lessons:6,desc:'Python синтаксисін, шарттарды, циклдерді және функцияларды меңгер.',videoTitle:'Python бағдарламалау: бастаушыларға арналған сабақтар',videoSrc:'https://www.youtube-nocookie.com/embed/videoseries?list=PLQAt0m1f9OHvv2wxPGSCWjgy1qER_FvB6',modules:['Python-ға кіріспе','Айнымалылар және типтер','Шарттар','Циклдер','Тізімдер және функциялар','Қорытынды жоба']},
+ {id:'sql',title:'SQL және деректер базасы',cat:'Ақпараттық жүйелер',icon:'🗄️',level:'Бастапқы деңгей',lessons:8,desc:'Андрей Созыкиннің «Основы SQL» курсының тақырыптарына сүйенген қазақша оқу бағдарламасы. PostgreSQL мысалдары, түсіндірмелер және практикалық тапсырмалар.',videoTitle:'Андрей Созыкин — Основы SQL (дәрістер плейлисті)',videoSrc:'https://www.youtube-nocookie.com/embed/videoseries?list=PLtPJ9lKvJ4oh5SdmGVusIVDPcELrJ2bsT',modules:['Деректер базасы және SQL негіздері','SELECT және WHERE сұраныстары','ORDER BY және деректерді сұрыптау','Кестелерді құру: CREATE TABLE','Мәліметтерді қосу және өзгерту: INSERT, UPDATE, DELETE','GROUP BY, агрегаттық функциялар және HAVING','JOIN және бірнеше кестемен жұмыс','Подзапрос, транзакция, индекс және VIEW']},
+ {id:'ai',title:'Жасанды интеллект негіздері',cat:'Жасанды интеллект',icon:'🤖',level:'Бастапқы деңгей',lessons:5,desc:'AI ұғымын, генеративті құралдарды және дұрыс сұрау жазуды үйрен.',videoTitle:'Жасанды интеллект дегеніміз не?',videoSrc:'https://www.youtube-nocookie.com/embed/rvMQuc1e5ds',modules:['Жасанды интеллект дегеніміз не?','Генеративті AI','Сұрау (prompt) жазу','AI және академиялық адалдық','Қорытынды жоба']}
+];
+let done=0,score=0;
+function card(c){return `<div class="card"><div class="course-top">${c.icon}</div><span class="tag">${c.cat}</span><h3>${c.title}</h3><p>${c.desc}</p><div class="meta"><span>${c.level}</span><span>${c.lessons} сабақ</span></div><button onclick="openCourse('${c.id}')">Курсты ашу</button></div>`}
+document.getElementById('homeCourses').innerHTML=courses.slice(0,3).map(card).join('');
+document.getElementById('allCourses').innerHTML=courses.map(card).join('');
+document.getElementById('testCourses').innerHTML=courses.map(c=>`<div class="card"><div class="course-top">📝</div><span class="tag">${c.cat}</span><h3>${c.title}</h3><p>${c.id==='sql'?'20':'10'} сұрақтан тұратын қорытынды тест.</p><button onclick="startQuiz('${c.id}')">Тестті бастау</button></div>`).join('');
+function showPage(id){document.querySelectorAll('.page').forEach(x=>x.classList.add('hidden'));document.getElementById(id).classList.remove('hidden');document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===id));window.scrollTo(0,0)}
+document.querySelectorAll('nav button').forEach(b=>b.addEventListener('click',()=>showPage(b.dataset.page)));
+function youtubeUrl(src){if(src.includes('videoseries?list='))return 'https://www.youtube.com/playlist?list='+src.split('list=')[1];let id=src.split('/embed/')[1].split('?')[0];return 'https://www.youtube.com/watch?v='+id;}
+function openCourse(id){let c=courses.find(x=>x.id===id);let moduleList=c.modules.map((m,i)=>`<div class="module"><strong>${i+1}. ${m}</strong><small>${id==='sql'?'Сабақ мазмұнын ашу үшін басыңыз':'Сабақ материалдары · Практикалық жұмыс'}</small>${id==='sql'?`<button class="secondary" style="margin-top:8px" onclick="openSqlLesson(${i})">Сабақты оқу</button>`:''}</div>`).join('');document.getElementById('courseContent').innerHTML=`<div class="panel"><span class="tag">${c.cat}</span><h1>${c.icon} ${c.title}</h1><p class="muted">${c.desc}</p><div class="statrow"><div class="stat"><b>${c.lessons}</b><span>Модуль</span></div><div class="stat"><b>${id==='sql'?20:10}</b><span>Тест сұрағы</span></div><div class="stat"><b>${id==='sql'?4:1}</b><span>Практика</span></div></div></div><div class="two-col"><div><div class="panel"><h3>Курс бағдарламасы</h3>${moduleList}</div>${id==='sql'?'<div class="panel" id="sqlLessonContent"><h3>📘 Сабақ мазмұны</h3><p class="muted">Сол жақтағы модульден «Сабақты оқу» батырмасын басыңыз.</p></div>':''}</div><div><div class="panel"><h3>🎥 Видео сабақ</h3><p class="muted">${c.videoTitle}</p><div class="video-wrap"><iframe src="${c.videoSrc}" title="${c.videoTitle}" loading="eager" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><p class="muted">Егер видео осы терезеде ашылмаса, төмендегі сілтемені басып YouTube-та көр.</p><p><a class="youtube-link" href="${youtubeUrl(c.videoSrc)}" target="_blank" rel="noopener">▶ Видеоны YouTube-та ашу</a></p>${id==='sql'?'<p><a href="https://www.asozykin.ru/courses/sql" target="_blank" rel="noopener">Андрей Созыкиннің ресми курс беті</a></p>':''}<button onclick="startQuiz('${id}')">Қорытынды тестті ашу</button></div><div class="panel"><h3>Оқу нәтижесі</h3><p>Модульдерді ретімен орындап, қорытынды тесттен өт.</p></div></div></div>`;showPage('courseDetail')}
+const quizzes={
+ cpp:[
+  ['C++ бағдарламасында экранға шығару операторы?',['cout','cin','input','print'],0],
+  ['Бүтін сан типі?',['double','int','char','bool'],1],
+  ['Бағдарлама қай функциядан басталады?',['start()','run()','main()','begin()'],2],
+  ['Мәнді енгізу үшін қай оператор қолданылады?',['cout','cin','print','echo'],1],
+  ['Шартты тексеру операторы?',['if','for','include','return'],0],
+  ['Қайталау операторын көрсет.',['switch','while','break','using'],1],
+  ['Бір таңбаны сақтау типі?',['int','float','char','string'],2],
+  ['C++ тілінде жолдық тип қалай жазылады?',['text','String','string','word'],2],
+  ['Массив индексі әдетте неден басталады?',['0','1','-1','10'],0],
+  ['Экранға жаңа жолға шығару белгісі?',['\\t','\\n','\\0','\\b'],1]
+ ],
+ python:[
+  ['Экранға мәтін шығару функциясы?',['input()','print()','cout','scan()'],1],
+  ['Функция анықтау сөзі?',['func','def','function','method'],1],
+  ['Бүтін сан типі?',['str','float','int','list'],2],
+  ['Пайдаланушыдан дерек енгізу функциясы?',['read()','input()','scan()','cin()'],1],
+  ['Теңдік салыстыру операторы?',['=','==','!=','=>'],1],
+  ['Тізім қандай жақшамен жазылады?',['{}','()','[]','<>'],2],
+  ['Циклдің бір түрі?',['repeat','while','looping','cycle'],1],
+  ['Қалдықты табу операторы?',['/','//','%','**'],2],
+  ['Шарттың басқа тармағы?',['elif','def','for','import'],0],
+  ['Модульді қосу командасы?',['include','using','import','package'],2]
+ ],
+ sql:[
+  ['SQL қысқартуы нені білдіреді?',['Structured Query Language','Simple Question List','System Query Link','Standard Quick Logic'],0],
+  ['Деректерді таңдау командасы?',['SELECT','DELETE','UPDATE','DROP'],0],
+  ['Кестеге жаңа жазба қосу командасы?',['ALTER','INSERT','SELECT','JOIN'],1],
+  ['Жазбаларды шарт бойынша сүзу үшін қай сөз қолданылады?',['ORDER BY','GROUP BY','WHERE','FROM'],2],
+  ['Кестедегі барлық бағанды таңдау белгісі?',['#','*','&','%'],1],
+  ['Нәтижені өсу ретімен сұрыптау белгісі?',['DESC','ASC','SORT','ORDER'],1],
+  ['Жазбалар санын есептейтін функция?',['SUM()','COUNT()','AVG()','MAX()'],1],
+  ['Кестені құру командасы?',['MAKE TABLE','NEW TABLE','CREATE TABLE','ADD TABLE'],2],
+  ['Кестедегі бар мәліметті өзгерту командасы?',['UPDATE','INSERT','SELECT','CREATE'],0],
+  ['Кестеден жазбаларды жою командасы?',['REMOVE','DROP ROW','DELETE','CLEAR'],2],
+  ['Қайталанбайтын мәндерді алу сөзі?',['UNIQUE','ONLY','DISTINCT','DIFFERENT'],2],
+  ['Екі кестені байланыстыру командасы?',['MERGE','JOIN','LINK','CONNECT'],1],
+  ['Топтастыру үшін қолданылатын оператор?',['GROUP BY','ORDER BY','WHERE','VALUES'],0],
+  ['Топтастырылған нәтижеге шарт қою операторы?',['WHERE','HAVING','LIMIT','INTO'],1],
+  ['Орташа мәнді есептейтін функция?',['SUM()','COUNT()','AVG()','MIN()'],2],
+  ['Ең үлкен мәнді табатын функция?',['MAX()','MIN()','AVG()','COUNT()'],0],
+  ['Бастапқы кілттің негізгі қасиеті?',['Мәні қайталанады','Жолды бірегей анықтайды','Тек мәтін болады','Міндетті түрде бос болады'],1],
+  ['Басқа кестедегі кілтке сілтеме жасайтын кілт?',['PRIMARY KEY','FOREIGN KEY','INDEX','VIEW'],1],
+  ['Транзакцияны растау командасы?',['ROLLBACK','COMMIT','DELETE','CLOSE'],1],
+  ['SQL-де сақталған сұранысты виртуалды кесте ретінде көрсету қалай аталады?',['INDEX','TRIGGER','VIEW','SCHEMA'],2]
+ ],
+ ai:[
+  ['Генеративті AI не істей алады?',['Мазмұн құрастырады','Компьютерді өшіреді','Тек файл сақтайды','Интернетті ажыратады'],0],
+  ['AI жауабын қалай қолданған дұрыс?',['Тексерусіз қабылдау','Сенімді дереккөзбен тексеру','Құпиясөз жіберу','Барлық деректі жариялау'],1],
+  ['Жақсы prompt қандай?',['Түсініксіз','Мақсаты анық','Кездейсоқ сөз','Тек бір әріп'],1],
+  ['AI қысқартуы нені білдіреді?',['Автоматты интернет','Жасанды интеллект','Ақпарат индексі','Ақылды интерфейс'],1],
+  ['Мәтін генерациялайтын құралға не беріледі?',['Сұрау (prompt)','Монитор','Пернетақта драйвері','Қуат көзі'],0],
+  ['AI нәтижесінде қате ақпарат болуы мүмкін бе?',['Жоқ, ешқашан','Иә, болуы мүмкін','Тек түнде','Тек суретте'],1],
+  ['Машиналық оқыту нені пайдаланады?',['Деректерді','Тек кабельді','Принтерді','Экран өлшемін'],0],
+  ['AI қолданғанда жеке деректермен не істеу керек?',['Кез келген жерге енгізу','Жариялау','Құпия сақтау және абай болу','Бәріне жіберу'],2],
+  ['Сурет жасайтын AI қандай нәтиже береді?',['Кесте ғана','Сурет','Дыбыс қана','SQL сұранысы'],1],
+  ['AI-ды оқу кезінде қалай қолданған дұрыс?',['Дайын жауапты көшіріп алу','Түсінуге және идея табуға көмек ретінде','Тексеруді мүлде тоқтату','Дереккөзді елемеу'],1]
+ ]
+};
+
+const sqlLessons=[
+{title:'1-модуль. Деректер базасы және SQL негіздері',body:'Деректер базасы — ақпаратты реттелген түрде сақтайтын жүйе. SQL (Structured Query Language) — реляциялық деректер базасындағы мәліметтермен жұмыс істеуге арналған тіл. Бұл курста мысалдар PostgreSQL синтаксисіне негізделген.',example:'-- Барлық студенттерді шығару\nSELECT * FROM students;',task:'students кестесіндегі барлық бағанды шығаратын SQL сұранысын жаз.',answer:'SELECT * FROM students;'},
+{title:'2-модуль. SELECT және WHERE сұраныстары',body:'SELECT қажетті бағандарды таңдайды. WHERE шартқа сәйкес келетін жолдарды ғана қалдырады. Мәтіндік мәндер тырнақшаға алынады.',example:"SELECT first_name, group_id\nFROM students\nWHERE group_id = 201;",task:'students кестесінен group_id мәні 201 болатын студенттердің атын таңда.',answer:'SELECT first_name FROM students WHERE group_id = 201;'},
+{title:'3-модуль. ORDER BY және деректерді сұрыптау',body:'ORDER BY нәтижені белгілі бір баған бойынша сұрыптайды. ASC — өсу реті, DESC — кему реті. Бағыт көрсетілмесе, әдетте ASC қолданылады.',example:'SELECT first_name, grade\nFROM students\nORDER BY grade DESC;',task:'students кестесіндегі жазбаларды grade бағаны бойынша кему ретімен сұрыпта.',answer:'SELECT * FROM students ORDER BY grade DESC;'},
+{title:'4-модуль. Кестелерді құру: CREATE TABLE',body:'CREATE TABLE жаңа кесте жасайды. Әр бағанның атауы мен деректер типі көрсетіледі. PRIMARY KEY жолды бірегей анықтайды, NOT NULL бос мәнге рұқсат бермейді.',example:'CREATE TABLE students (\n id SERIAL PRIMARY KEY,\n first_name VARCHAR(50) NOT NULL,\n group_id INTEGER,\n grade NUMERIC(4,2)\n);',task:'id және name бағандары бар courses кестесін құр. id — бастапқы кілт, name бос болмауы керек.',answer:'CREATE TABLE courses (id SERIAL PRIMARY KEY, name VARCHAR(100) NOT NULL);'},
+{title:'5-модуль. INSERT, UPDATE және DELETE',body:'INSERT INTO кестеге жаңа жол қосады. UPDATE бар жолдарды өзгертеді және әдетте WHERE шартымен бірге қолданылады. DELETE FROM шартқа сәйкес жолдарды жояды. WHERE шартын мұқият қолдан.',example:"INSERT INTO students (first_name, group_id)\nVALUES ('Aruzhan', 201);\n\nUPDATE students\nSET group_id = 202\nWHERE id = 1;",task:'courses кестесіне name мәні SQL Basics болатын жаңа жазба енгіз.',answer:"INSERT INTO courses (name) VALUES ('SQL Basics');"},
+{title:'6-модуль. GROUP BY, агрегаттық функциялар және HAVING',body:'COUNT жазбаларды санайды, SUM қосындыны, AVG орташа мәнді, MIN ең кіші мәнді, MAX ең үлкен мәнді табады. GROUP BY жазбаларды топтарға бөледі. HAVING топтастырылған нәтижеге шарт қояды.',example:'SELECT group_id, COUNT(*) AS student_count\nFROM students\nGROUP BY group_id\nHAVING COUNT(*) > 5;',task:'students кестесіндегі әр group_id бойынша студенттер санын есепте.',answer:'SELECT group_id, COUNT(*) FROM students GROUP BY group_id;'},
+{title:'7-модуль. JOIN және бірнеше кестемен жұмыс',body:'JOIN бірнеше кестедегі байланысты деректерді біріктіреді. INNER JOIN тек екі жақта да сәйкес жазбалары бар жолдарды қайтарады. LEFT JOIN сол жақ кестедегі барлық жолды сақтайды.',example:'SELECT s.first_name, g.group_name\nFROM students AS s\nJOIN groups AS g ON s.group_id = g.id;',task:'students және groups кестелерін group_id және id өрістері арқылы біріктір.',answer:'SELECT * FROM students JOIN groups ON students.group_id = groups.id;'},
+{title:'8-модуль. Подзапрос, транзакция, индекс және VIEW',body:'Подзапрос — басқа SQL сұранысының ішінде орналасқан сұраныс. Транзакция бірнеше әрекетті бір логикалық операция ретінде орындайды: COMMIT өзгерісті бекітеді, ROLLBACK қайтарып тастайды. Индекс іздеуді жылдамдатуы мүмкін. VIEW — сақталған SELECT сұранысына негізделген виртуалды кесте.',example:'SELECT first_name\nFROM students\nWHERE grade > (SELECT AVG(grade) FROM students);\n\nCREATE VIEW successful_students AS\nSELECT * FROM students WHERE grade >= 80;',task:'students кестесінен орташа бағадан жоғары баға алған студенттерді таңдайтын подзапрос жаз.',answer:'SELECT * FROM students WHERE grade > (SELECT AVG(grade) FROM students);'}
+];
+function openSqlLesson(i){const l=sqlLessons[i],box=document.getElementById('sqlLessonContent');box.innerHTML=`<span class="tag">SQL · ${i+1}/8 модуль</span><h3 style="margin-top:12px">${l.title}</h3><p>${l.body}</p><h4>SQL мысалы</h4><pre style="white-space:pre-wrap;background:#0f1b2d;color:#e7f0ff;padding:14px;border-radius:12px;overflow:auto">${l.example.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</pre><h4>Өзің орындап көр</h4><p>${l.task}</p><p class="muted">Алдымен өз бетіңше жазып көр, кейін жауап үлгісін аш.</p><button class="secondary" onclick="document.getElementById('sqlAnswer${i}').classList.toggle('hidden')">Жауап үлгісін көрсету</button><pre id="sqlAnswer${i}" class="hidden" style="white-space:pre-wrap;background:#f1f5f9;padding:12px;border-radius:10px">${l.answer}</pre>`;box.scrollIntoView({behavior:'smooth',block:'start'});}
+
+let currentQuiz='cpp';
+function startQuiz(id){currentQuiz=id;let c=courses.find(x=>x.id===id);document.getElementById('quizTitle').textContent=c.title+' — қорытынды тест';document.getElementById('quizQuestions').innerHTML=quizzes[id].map((q,i)=>`<div class="module"><strong>${i+1}. ${q[0]}</strong>${q[1].map((a,j)=>`<label class="option"><input type="radio" name="q${i}" value="${j}">${a}</label>`).join('')}</div>`).join('');document.getElementById('quizResult').innerHTML='';document.getElementById('quizResult').dataset.finished='0';showPage('quiz')}
+function checkQuiz(){if(document.getElementById('quizResult').dataset.finished==='1')return;let qs=quizzes[currentQuiz],n=0;qs.forEach((q,i)=>{let a=document.querySelector(`input[name="q${i}"]:checked`);if(a&&Number(a.value)===q[2])n++});score+=n*10;done++;document.getElementById('quizResult').dataset.finished='1';document.getElementById('quizResult').innerHTML=`<div class="success">Тест аяқталды! Дұрыс жауап: ${n}/${qs.length}. Жинаған ұпай: ${n*10} ұпай. Пайыздық нәтиже: ${Math.round(n/qs.length*100)}%.</div>`;document.getElementById('scoreCount').textContent=score;document.getElementById('doneCount').textContent=done}
+function openExercise(){document.getElementById('exerciseArea').classList.remove('hidden');document.getElementById('exerciseArea').innerHTML=`<h3>C++: Екі санның қосындысы</h3><p>Екі бүтін санды қосқанда нәтиже 12 болу үшін қандай сандарды қосуға болады?</p><label>Бірінші сан</label><input id="a" type="number" value="5"><label>Екінші сан</label><input id="b" type="number" value="7"><button style="margin-top:12px" onclick="checkSum()">Жауапты тексеру</button><div id="exerciseResult"></div>`;document.getElementById('exerciseArea').scrollIntoView({behavior:'smooth'})}
+function checkSum(){let a=Number(document.getElementById('a').value),b=Number(document.getElementById('b').value);let ok=a+b===12;document.getElementById('exerciseResult').innerHTML=`<div class="${ok?'success':'notice'}">${ok?'Дұрыс! Қосындысы 12. +10 ұпай':'Әзірге дұрыс емес. Екі санның қосындысы 12 болуы керек.'}</div>`;if(ok){score+=10;done++;document.getElementById('scoreCount').textContent=score;document.getElementById('doneCount').textContent=done}}
+function openPythonExercise(){
+ const area=document.getElementById('exerciseArea'); area.classList.remove('hidden');
+ area.innerHTML=`<h3>Python: Жұп немесе тақ сан</h3><p>12 саны жұп па, тақ па?</p><label>Жауабың</label><input id="pyanswer" placeholder="Жұп немесе тақ"><button id="checkPython" style="margin-top:12px">Жауапты тексеру</button><div id="exerciseResult"></div>`;
+ document.getElementById('checkPython').addEventListener('click',()=>{const v=document.getElementById('pyanswer').value.trim().toLowerCase();const ok=v==='жұп'||v==='жуп';document.getElementById('exerciseResult').innerHTML=`<div class="${ok?'success':'notice'}">${ok?'Дұрыс! 12 — жұп сан. +10 ұпай':'Қайта ойланып көр. 12 санын 2-ге бөлгенде қалдық қалмайды.'}</div>`;if(ok){score+=10;done++;document.getElementById('scoreCount').textContent=score;document.getElementById('doneCount').textContent=done;}});
+ area.scrollIntoView({behavior:'smooth'});
+}
+
+const sqlTasks=[
+{title:'Практика 1. SELECT және WHERE',desc:'students кестесінен group_id мәні 201 болатын барлық бағанды таңда.',placeholder:'SELECT * FROM students WHERE group_id = 201;',answer:/^select\s+\*\s+from\s+students\s+where\s+group_id\s*=\s*201;?$/i,explain:'SELECT * FROM students WHERE group_id = 201;'},
+{title:'Практика 2. GROUP BY және COUNT',desc:'students кестесіндегі әр топ бойынша студенттер санын есепте.',placeholder:'SELECT group_id, COUNT(*) FROM students GROUP BY group_id;',answer:/^select\s+group_id\s*,\s*count\s*\(\s*\*\s*\)\s+from\s+students\s+group\s+by\s+group_id;?$/i,explain:'SELECT group_id, COUNT(*) FROM students GROUP BY group_id;'},
+{title:'Практика 3. JOIN арқылы байланыстыру',desc:'students және groups кестелерін students.group_id = groups.id шартымен біріктір.',placeholder:'SELECT * FROM students JOIN groups ON students.group_id = groups.id;',answer:/^select\s+\*\s+from\s+students\s+join\s+groups\s+on\s+students\.group_id\s*=\s*groups\.id;?$/i,explain:'SELECT * FROM students JOIN groups ON students.group_id = groups.id;'},
+{title:'Практика 4. Қорытынды сұраныс',desc:'Әр топта 5-тен көп студент бар топтарды көрсет. GROUP BY және HAVING қолдан.',placeholder:'SELECT group_id, COUNT(*) FROM students GROUP BY group_id HAVING COUNT(*) > 5;',answer:/^select\s+group_id\s*,\s*count\s*\(\s*\*\s*\)\s+from\s+students\s+group\s+by\s+group_id\s+having\s+count\s*\(\s*\*\s*\)\s*>\s*5;?$/i,explain:'SELECT group_id, COUNT(*) FROM students GROUP BY group_id HAVING COUNT(*) > 5;'}
+];
+function openSqlTask(i){const area=document.getElementById('exerciseArea'),t=sqlTasks[i];area.classList.remove('hidden');area.innerHTML=`<span class="tag">SQL · Практикалық жұмыс ${i+1}/4</span><h3>${t.title}</h3><p>${t.desc}</p><label for="sqlTaskInput">SQL сұранысыңды жаз:</label><textarea id="sqlTaskInput" rows="4" style="width:100%;padding:12px;border:1px solid #d9e1ec;border-radius:10px;font:14px/1.5 Consolas,monospace" placeholder="${t.placeholder}"></textarea><div class="row" style="margin-top:12px"><button onclick="checkSqlTask(${i})">Жауапты тексеру</button><button class="secondary" onclick="document.getElementById('sqlTaskHint').classList.toggle('hidden')">Жауап үлгісі</button></div><div id="sqlTaskHint" class="notice hidden" style="margin-top:12px">${t.explain}</div><div id="sqlTaskResult"></div>`;area.scrollIntoView({behavior:'smooth'});}
+function checkSqlTask(i){const t=sqlTasks[i],value=document.getElementById('sqlTaskInput').value.trim().replace(/\s+/g,' '),result=document.getElementById('sqlTaskResult'),ok=t.answer.test(value);result.innerHTML=`<div class="${ok?'success':'notice'}">${ok?'Дұрыс! Тапсырма орындалды. +10 ұпай.':'Әзірге сәйкес келмейді. Сұраныстың командаларын және жазылуын тексер.'}</div>`;if(ok&&!result.dataset.passed){score+=10;done++;result.dataset.passed='1';document.getElementById('scoreCount').textContent=score;document.getElementById('doneCount').textContent=done;}}
+
+function openSqlExercise(){
+ const area=document.getElementById('exerciseArea'); area.classList.remove('hidden');
+ area.innerHTML=`<h3>SQL: SELECT сұранысы</h3><p>students кестесіндегі барлық бағанды таңдау үшін дұрыс сұранысты таңда:</p><label class="option"><input type="radio" name="sqlx" value="0">SELECT * FROM students;</label><label class="option"><input type="radio" name="sqlx" value="1">DELETE FROM students;</label><label class="option"><input type="radio" name="sqlx" value="2">UPDATE students;</label><button id="checkSql" style="margin-top:12px">Жауапты тексеру</button><div id="exerciseResult"></div>`;
+ document.getElementById('checkSql').addEventListener('click',()=>{const v=document.querySelector('input[name="sqlx"]:checked');const ok=!!v&&v.value==='0';document.getElementById('exerciseResult').innerHTML=`<div class="${ok?'success':'notice'}">${ok?'Дұрыс! SELECT * FROM students; барлық бағанды таңдайды. +10 ұпай':'Дұрыс сұранысты таңда.'}</div>`;if(ok){score+=10;done++;document.getElementById('scoreCount').textContent=score;document.getElementById('doneCount').textContent=done;}});
+ area.scrollIntoView({behavior:'smooth'});
+}
+</script>
+</body>
+</html>
